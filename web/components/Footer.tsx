@@ -84,10 +84,10 @@ export default function Footer() {
       </div>
 
       {/* ── CREATIVE HUB watermark + copyright ───────────────────────── */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden pb-10">
         {/* Oversized gradient wordmark */}
         <p
-          className="text-[clamp(50px,12vw,169px)] font-black uppercase leading-none text-transparent select-none text-center whitespace-nowrap"
+          className="text-[clamp(60px,11vw,169px)] font-black uppercase leading-none text-transparent select-none text-center"
           style={{
             fontFamily: 'var(--font-mona-sans)',
             backgroundImage: 'linear-gradient(92.7deg, rgb(41,93,96) 1.43%, rgb(35,198,198) 50.61%, rgb(41,93,96) 99.78%)',  

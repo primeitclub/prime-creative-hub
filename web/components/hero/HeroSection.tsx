@@ -31,7 +31,7 @@ export default function HeroSection() {
               color="#8B5CF6"
               className="absolute -bottom-8 left-20 translate-x-10"
               animName="cursor-float-1"
-              animDuration="4.5s"
+              animDuration="7s"
             />
           </div>
 
@@ -41,13 +41,13 @@ export default function HeroSection() {
             {/* IMAGINE + Technical wing annotation on same line */}
             <div className="flex items-center justify-center gap-[25px] flex-wrap">
               <h1
-                className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
+                className="text-[clamp(44px,11vw,64px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
                 style={{ fontFamily: 'var(--font-mona-sans)', color: '#0AC4D0' }}
               >
                 <HeadlineWord color="#0AC4D0">IMAGINE</HeadlineWord>
               </h1>
               <div
-                className="hidden md:flex flex-col items-start text-left text-[15px] leading-[1.7] text-[#E2FFFE] self-center pb-1"
+                className="flex flex-col items-start text-left text-[11px] md:text-[15px] leading-[1.7] text-[#E2FFFE] self-center pb-1"
                 style={{ fontFamily: 'var(--font-mona-sans)' }}
               >
                 <span>// Technical wing</span>
@@ -64,7 +64,7 @@ export default function HeroSection() {
               <div className="relative self-center">
                 <Link
                   href="#"
-                  className="flex items-center gap-1.5 px-3 py-1.5 md:px-[25px] md:py-3 rounded-full border border-white/20 text-[#E2FFFE] text-[11px] md:text-[17.5px] font-bold hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-1.5 md:px-[25px] md:py-3 rounded-full border border-white/20 text-[#E2FFFE] text-[13px] md:text-[17.5px] font-bold hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
                   <span className="relative flex w-2.5 h-2.5 shrink-0">
@@ -78,7 +78,7 @@ export default function HeroSection() {
                   color="#10B981"
                   className="absolute -bottom-2 right-10 translate-x-20"
                   animName="cursor-float-3"
-                  animDuration="3.8s"
+                  animDuration="6s"
                 />
               </div>
             </div>
@@ -88,7 +88,7 @@ export default function HeroSection() {
               <div className="relative self-center">
                 <Link
                   href="/projects"
-                  className="flex items-center gap-1 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/15 text-[#E2FFFE] text-[11px] md:text-[17.5px] font-medium hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
+                  className="flex items-center gap-1 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/15 text-[#E2FFFE] text-[13px] md:text-[17.5px] font-medium hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
                   Projects →
@@ -98,11 +98,11 @@ export default function HeroSection() {
                   color="#EC4899"
                   className="absolute -bottom-5 right-0 translate-x-3"
                   animName="cursor-float-2"
-                  animDuration="5.2s"
+                  animDuration="8s"
                 />
               </div>
               <h1
-                className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
+                className="text-[clamp(44px,11vw,64px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
                 style={{ fontFamily: 'var(--font-mona-sans)' }}
               >
                 <HeadlineWord color="#E2FFFE">
@@ -165,7 +165,7 @@ export default function HeroSection() {
 function HeadlineWord({ color, children }: { color: string; children: ReactNode }) {
   return (
     <span
-      className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85] block"
+      className="text-[clamp(44px,11vw,64px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85] block"
       style={{ fontFamily: 'var(--font-space-grotesk)', color }}
     >
       {children}

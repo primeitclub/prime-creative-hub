@@ -20,8 +20,8 @@ export default function WhatWeDo() {
       <div className="grid lg:grid-cols-[auto_1fr] gap-12 items-start">
 
         {/* Left: particle logo animation */}
-        <div className="hidden lg:flex items-center justify-center">
-          <div className="w-[340px] h-[340px] rounded-2xl overflow-hidden ">
+        <div className="flex items-center justify-center">
+          <div className="w-[280px] h-[280px] lg:w-[340px] lg:h-[340px] rounded-2xl overflow-hidden">
             <ParticleLogoWrapper />
           </div>
         </div>
