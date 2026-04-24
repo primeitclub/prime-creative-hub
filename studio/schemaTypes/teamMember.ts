@@ -43,9 +43,9 @@ export const teamMember = defineType({
       type: 'url',
     }),
     defineField({
-      name: 'tenure',
-      title: 'Tenure',
-      type: 'string',
+      name: 'personalSite',
+      title: 'Personal Site',
+      type: 'url',
     }),
     defineField({
       name: 'order',
