@@ -21,7 +21,7 @@ export default function HeroSection() {
           {/* Pill */}
           <div className="relative inline-flex self-center mb-6">
             <span
-              className="inline-flex items-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-[15px] text-[#E2FFFE]"
+              className="inline-flex items-center px-3 py-1 md:px-5 md:py-2 rounded-full border border-white/10 bg-white/5 text-[11px] md:text-[15px] text-[#E2FFFE]"
               style={{ fontFamily: 'var(--font-mona-sans)' }}
             >
               Hello👋, We&apos;re Prime Creative Hub
@@ -41,7 +41,7 @@ export default function HeroSection() {
             {/* IMAGINE + Technical wing annotation on same line */}
             <div className="flex items-center justify-center gap-[25px] flex-wrap">
               <h1
-                className="text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
+                className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
                 style={{ fontFamily: 'var(--font-mona-sans)', color: '#0AC4D0' }}
               >
                 <HeadlineWord color="#0AC4D0">IMAGINE</HeadlineWord>
@@ -64,7 +64,7 @@ export default function HeroSection() {
               <div className="relative self-center">
                 <Link
                   href="#"
-                  className="flex items-center gap-2 px-[25px] py-3 rounded-full border border-white/20 text-[#E2FFFE] text-[17.5px] font-bold hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
+                  className="flex items-center gap-1.5 px-3 py-1.5 md:px-[25px] md:py-3 rounded-full border border-white/20 text-[#E2FFFE] text-[11px] md:text-[17.5px] font-bold hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
                   <span className="relative flex w-2.5 h-2.5 shrink-0">
@@ -88,7 +88,7 @@ export default function HeroSection() {
               <div className="relative self-center">
                 <Link
                   href="/projects"
-                  className="flex items-center gap-1 px-5 py-2.5 rounded-full border border-white/15 text-[#E2FFFE] text-[17.5px] font-medium hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
+                  className="flex items-center gap-1 px-3 py-1.5 md:px-5 md:py-2.5 rounded-full border border-white/15 text-[#E2FFFE] text-[11px] md:text-[17.5px] font-medium hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
                   Projects →
@@ -102,7 +102,7 @@ export default function HeroSection() {
                 />
               </div>
               <h1
-                className="text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
+                className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85]"
                 style={{ fontFamily: 'var(--font-mona-sans)' }}
               >
                 <HeadlineWord color="#E2FFFE">
@@ -115,7 +115,7 @@ export default function HeroSection() {
 
           {/* Tagline */}
           <p
-            className="text-[#E2FFFE] max-w-[560px] leading-relaxed mt-10 font-bold text-[20px]"
+            className="text-[#E2FFFE] max-w-[560px] leading-relaxed mt-8 md:mt-10 font-bold text-[15px] md:text-[20px]"
             style={{ fontFamily: 'var(--font-mona-sans)' }}
           >
             We create real-world impact through
@@ -130,26 +130,29 @@ export default function HeroSection() {
       {/* Hero footer bar */}
       <div className="w-full border-t border-white/8" />
       <div className="w-full">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] py-3">
-          <div className="relative flex items-center">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] py-4 md:py-3">
+          <div className="flex flex-col items-center gap-3 md:relative md:flex-row md:items-center md:gap-0">
 
-            {/* Left: tagline */}
-            <p className="absolute left-0 text-[#E2FFFE] text-[15px] font-medium" style={{ fontFamily: 'var(--font-mona-sans)' }}>
+            {/* Tagline */}
+            <p className="text-[#E2FFFE] text-[13px] md:text-[15px] font-medium md:absolute md:left-0" style={{ fontFamily: 'var(--font-mona-sans)' }}>
               // Where Creativity Meets Innovation
             </p>
 
-            {/* Social icons — truly centered */}
-            <div className="flex items-center gap-4 mx-auto">
+            {/* Social icons — mail icon joins the row on mobile */}
+            <div className="flex items-center gap-4 md:mx-auto">
               <SocialIcon label="Instagram" src="/icons/instagram.svg" />
               <SocialIcon label="GitHub"    src="/icons/github.svg"    />
               <SocialIcon label="LinkedIn"  src="/icons/linkedin.svg"  />
+              <span className="md:hidden">
+                <SocialIcon label="Mail" src="/icons/mail.svg" href="mailto:primecreativehub2025@gmail.com" />
+              </span>
             </div>
 
-            {/* Right: email */}
-            <div className="absolute right-0 flex items-center gap-2">
-              <SocialIcon label="Mail" src="/icons/mail.svg" />
+            {/* Email — desktop only */}
+            <div className="hidden md:flex items-center gap-2 md:absolute md:right-0">
+              <SocialIcon label="Mail" src="/icons/mail.svg" href="mailto:primecreativehub2025@gmail.com" />
               <span className="text-[#E2FFFE] text-[15px]" style={{ fontFamily: 'var(--font-mona-sans)' }}>
-                creativehub@gmail.com
+                primecreativehub2025@gmail.com
               </span>
             </div>
           </div>
@@ -162,7 +165,7 @@ export default function HeroSection() {
 function HeadlineWord({ color, children }: { color: string; children: ReactNode }) {
   return (
     <span
-      className="text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85] block"
+      className="text-[clamp(38px,10.5vw,60px)] md:text-[clamp(70px,9.375vw,120px)] font-bold tracking-[-0.033em] leading-[0.85] block"
       style={{ fontFamily: 'var(--font-space-grotesk)', color }}
     >
       {children}
@@ -170,10 +173,10 @@ function HeadlineWord({ color, children }: { color: string; children: ReactNode 
   );
 }
 
-function SocialIcon({ label, src }: { label: string; src: string }) {
+function SocialIcon({ label, src, href = '#' }: { label: string; src: string; href?: string }) {
   return (
     <a
-      href="#"
+      href={href}
       aria-label={label}
       className="w-10 h-10 rounded-full flex items-center justify-center transition-all group"
     >
@@ -195,15 +198,15 @@ function MiniCursor({
 }) {
   return (
     <div
-      className={`hidden lg:flex flex-col items-start pointer-events-none z-10 ${className ?? ''}`}
+      className={`flex flex-col items-start pointer-events-none z-10 ${className ?? ''}`}
       style={{ animation: `${animName} ${animDuration} ease-in-out infinite` }}
     >
-      <svg width="15" height="20" viewBox="0 0 12 16" fill="none">
+      <svg className="w-[10px] h-[13px] lg:w-[15px] lg:h-[20px]" viewBox="0 0 12 16" fill="none">
         <path d="M1.5 1.5L10.5 7.5L6 9L3.5 14.5L1.5 1.5Z" fill={color} />
         <path d="M1.5 1.5L10.5 7.5L6 9L3.5 14.5L1.5 1.5Z" stroke="rgba(0,0,0,0.25)" strokeWidth="0.5" />
       </svg>
       <div
-        className="m-[3px] px-2.5 py-1.5 rounded-2xl text-[#E2FFFE] text-[15px] font-semibold whitespace-nowrap"
+        className="m-[2px] lg:m-[3px] px-1.5 py-0.5 lg:px-2.5 lg:py-1.5 rounded-2xl text-[#E2FFFE] text-[10px] lg:text-[15px] font-semibold whitespace-nowrap"
         style={{ backgroundColor: color, fontFamily: 'var(--font-mona-sans)' }}
       >
         {name}
