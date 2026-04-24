@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { blogs } from '@/lib/data';
+import { getPosts, urlFor } from '@/lib/sanity';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
@@ -8,7 +8,9 @@ export const metadata: Metadata = {
   description: 'Read articles and insights from Prime Creative Hub members.',
 };
 
-export default function BlogsPage() {
+export default async function BlogsPage() {
+  const posts = await getPosts();
+
   return (
     <main className="pt-[74px] min-h-screen">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] py-20">
@@ -29,17 +31,19 @@ export default function BlogsPage() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {blogs.map((post) => (
+          {posts.map((post: any) => (
             <article
-              key={post.id}
+              key={post._id}
               className="flex flex-col rounded-2xl overflow-hidden border border-white/8 bg-[#080808] hover:border-[#0AC4D0]/20 transition-all group"
             >
               <div className="relative h-[200px] overflow-hidden bg-[#0a0a0a] border-b border-white/5">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
-                />
+                {post.thumbnail && (
+                  <img
+                    src={urlFor(post.thumbnail).width(600).url()}
+                    alt={post.title}
+                    className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
               </div>
 
@@ -56,7 +60,7 @@ export default function BlogsPage() {
                   </span>
                 </div>
 
-                <Link href={`/blogs/${post.slug}`}>
+                <Link href={`/blogs/${post.slug?.current}`}>
                   <h3
                     className="text-[#E2FFFE] text-xl font-bold uppercase leading-snug tracking-tight hover:text-[#0AC4D0]/90 transition-colors"
                     style={{ fontFamily: 'var(--font-space-grotesk)' }}
@@ -66,7 +70,13 @@ export default function BlogsPage() {
                 </Link>
 
                 <p className="text-[#E2FFFE]/30 text-xs mt-auto pt-2" style={{ fontFamily: 'var(--font-mona-sans)' }}>
-                  {post.date}
+                  {post.publishedAt
+                    ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })
+                    : ''}
                 </p>
               </div>
             </article>

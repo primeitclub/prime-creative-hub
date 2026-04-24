@@ -1,38 +1,38 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { projects } from '@/lib/data';
+import { getProjects, urlFor } from '@/lib/sanity';
 
-export default function ProjectShowcase() {
+export default async function ProjectShowcase() {
+  const projects = await getProjects();
+
   return (
     <section className="py-20 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px]">
       <SectionHeader title="PROJECT SHOWCASE" arrowHref="/projects" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {projects.map((project) => (
+        {projects.map((project: any) => (
           <article
-            key={project.id}
+            key={project._id}
             className="flex flex-col rounded-2xl overflow-hidden border border-white/8 bg-[#080808] hover:border-[#0AC4D0]/20 transition-all group"
           >
             {/* Cover image */}
-            <div className="relative h-[200px] overflow-hidden bg-[#0a0a0a]">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent" />
+            <div className="relative h-[260px] overflow-hidden bg-[#0a0a0a]">
+              {project.thumbnail && (
+                <img
+                  src={urlFor(project.thumbnail).width(600).url()}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/20 to-transparent" />
             </div>
 
             {/* Content */}
             <div className="flex flex-col flex-1 p-6 gap-4">
               {/* Author */}
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-[#0AC4D0]/10 border border-[#0AC4D0]/20 flex items-center justify-center">
-                  <svg viewBox="0 0 10 10" fill="none" className="w-2.5 h-2.5">
-                    <circle cx="5" cy="3.5" r="2" fill="#0AC4D0" opacity="0.7" />
-                    <path d="M1 9.5c0-2.2 1.8-3.5 4-3.5s4 1.3 4 3.5" stroke="#0AC4D0" strokeWidth="0.8" opacity="0.7" />
-                  </svg>
-                </div>
+                <Image src="/icons/author.svg" alt="" width={16} height={16} />
                 <span className="text-[#E2FFFE]/50 text-xs" style={{ fontFamily: 'var(--font-mona-sans)' }}>
                   {project.author}
                 </span>
@@ -56,7 +56,7 @@ export default function ProjectShowcase() {
 
               {/* Tags */}
               <div className="flex flex-wrap gap-1.5">
-                {project.tags.slice(0, 6).map((tag) => (
+                {project.techStack?.slice(0, 6).map((tag: string) => (
                   <span
                     key={tag}
                     className="px-2.5 py-0.5 rounded-full border border-white/10 text-[#E2FFFE]/40 text-[11px]"
@@ -65,9 +65,9 @@ export default function ProjectShowcase() {
                     {tag}
                   </span>
                 ))}
-                {project.tags.length > 6 && (
+                {project.techStack?.length > 6 && (
                   <span className="px-2.5 py-0.5 rounded-full border border-white/10 text-[#E2FFFE]/30 text-[11px]">
-                    +{project.tags.length - 6}
+                    +{project.techStack.length - 6}
                   </span>
                 )}
               </div>
@@ -76,7 +76,7 @@ export default function ProjectShowcase() {
               <div className="flex items-center justify-between pt-2 border-t border-white/5">
                 <div className="flex items-center gap-3">
                   <a
-                    href={project.github}
+                    href={project.githubUrl}
                     className="flex items-center gap-1.5 text-[#E2FFFE]/40 text-xs hover:text-[#E2FFFE]/70 transition-colors"
                     style={{ fontFamily: 'var(--font-mona-sans)' }}
                   >
@@ -98,7 +98,7 @@ export default function ProjectShowcase() {
                   </a>
                 </div>
                 <Link
-                  href={`/projects`}
+                  href="/projects"
                   className="text-[#0AC4D0]/70 text-xs hover:text-[#0AC4D0] transition-colors"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
