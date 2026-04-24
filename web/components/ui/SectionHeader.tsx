@@ -18,7 +18,7 @@ export default function SectionHeader({ title, showArrow = true, arrowHref = '#'
       {showArrow && (
         <a
           href={arrowHref}
-          className="absolute bottom-0 right-0 translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center transition-all group shrink-0 overflow-hidden z-10"
+          className="absolute bottom-0 right-0 translate-y-1/2 w-9 h-9 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all group shrink-0 overflow-hidden z-10"
           aria-label={`View all ${title.toLowerCase()}`}
         >
           <Image
@@ -26,6 +26,7 @@ export default function SectionHeader({ title, showArrow = true, arrowHref = '#'
             alt=""
             width={56}
             height={56}
+            className="w-full h-full"
           />
         </a>
       )}

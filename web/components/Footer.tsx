@@ -17,17 +17,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
 
           {/* Col 1: Logo + tagline */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-center sm:items-start">
             <Image
               src="/prime-creative-hub-logo.svg"
               alt="Prime Creative Hub"
               width={140}
               height={48}
             />
-            <p className="text-[#E2FFFE]/40 text-xs" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+            <p className="text-[#E2FFFE]/40 text-xs text-center sm:text-left" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
               // Where Creativity Meets Innovation
             </p>
-            <p className="text-[#E2FFFE]/25 text-xs leading-relaxed" style={{ fontFamily: 'var(--font-mona-sans)' }}>
+            <p className="text-[#E2FFFE]/25 text-xs leading-relaxed text-center sm:text-left" style={{ fontFamily: 'var(--font-mona-sans)' }}>
               The technical wing of Prime IT Club building real-world impact through creativity, technology and community.
             </p>
           </div>
@@ -51,8 +51,8 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Col 3: Social + email — right aligned */}
-          <div className="flex flex-col gap-4 items-end">
+          {/* Col 3: Social + email — right aligned on sm+, centered on mobile */}
+          <div className="flex flex-col gap-4 items-center sm:items-end">
             <p className="text-[#E2FFFE]/40 text-[10px] uppercase tracking-widest" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
               // Connect
             </p>
@@ -87,7 +87,7 @@ export default function Footer() {
       <div className="relative overflow-hidden">
         {/* Oversized gradient wordmark */}
         <p
-          className="text-[clamp(100px,10vw,169px)] font-black uppercase leading-none text-transparent select-none text-center"
+          className="text-[clamp(50px,12vw,169px)] font-black uppercase leading-none text-transparent select-none text-center whitespace-nowrap"
           style={{
             fontFamily: 'var(--font-mona-sans)',
             backgroundImage: 'linear-gradient(92.7deg, rgb(41,93,96) 1.43%, rgb(35,198,198) 50.61%, rgb(41,93,96) 99.78%)',  
