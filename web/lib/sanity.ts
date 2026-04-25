@@ -20,6 +20,7 @@ export async function getProjects() {
       *[_type == "project"] | order(_createdAt desc) {
         _id,
         title,
+        slug,
         description,
         thumbnail,
         techStack,
@@ -28,6 +29,22 @@ export async function getProjects() {
         author
       }
     `)
+  }
+
+  export async function getProjectBySlug(slug: string) {
+    return client.fetch(`
+      *[_type == "project" && slug.current == $slug][0] {
+        _id,
+        title,
+        slug,
+        description,
+        thumbnail,
+        techStack,
+        githubUrl,
+        liveUrl,
+        author
+      }
+    `, { slug })
   }
   
   export async function getPosts() {
