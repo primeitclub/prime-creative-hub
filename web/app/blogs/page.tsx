@@ -4,7 +4,7 @@ import { getPosts, urlFor } from '@/lib/sanity';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Blogs — Prime Creative Hub',
+  title: 'Blogs | Prime Creative Hub',
   description: 'Read articles and insights from Prime Creative Hub members.',
 };
 
@@ -13,20 +13,22 @@ export default async function BlogsPage() {
 
   return (
     <main className="pt-[74px] min-h-screen">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] pt-10 pb-20">
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-xs text-[#E2FFFE]/30 mb-4" style={{ fontFamily: 'var(--font-mona-sans)' }}>
+          <Link href="/" className="hover:text-[#0AC4D0] transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-[#E2FFFE]/60">Blogs</span>
+        </nav>
+
         {/* Header */}
-        <div className="flex items-end justify-between pb-6 border-b border-white/10 mb-12">
-          <div>
-            <p className="text-[#0AC4D0]/60 text-sm mb-2" style={{ fontFamily: 'var(--font-mona-sans)' }}>
-              // Insights &amp; learnings
-            </p>
-            <h1
-              className="text-[clamp(40px,5vw,72px)] font-black uppercase leading-none text-[#E2FFFE] tracking-tight"
-              style={{ fontFamily: 'var(--font-space-grotesk)' }}
-            >
-              ALL BLOGS
-            </h1>
-          </div>
+        <div className="pb-6 border-b border-white/10 mb-12">
+          <h1
+            className="text-[clamp(40px,5vw,72px)] font-black uppercase leading-none text-[#E2FFFE] tracking-tight"
+            style={{ fontFamily: 'var(--font-space-grotesk)' }}
+          >
+            ALL BLOGS
+          </h1>
         </div>
 
         {/* Grid */}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, urlFor } from '@/lib/sanity';
 import Footer from '@/components/Footer';
@@ -10,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Prime Creative Hub`,
+    title: `${post.title} | Prime Creative Hub`,
     description: post.author ? `By ${post.author}` : undefined,
   };
 }
@@ -23,7 +24,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <main className="pt-[74px] min-h-screen">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] py-20">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] pt-10 pb-20">
+
+        {/* Breadcrumb */}
+        <nav className="flex items-center gap-2 text-xs text-[#E2FFFE]/30 mb-8" style={{ fontFamily: 'var(--font-mona-sans)' }}>
+          <Link href="/" className="hover:text-[#0AC4D0] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/blogs" className="hover:text-[#0AC4D0] transition-colors">Blogs</Link>
+          <span>/</span>
+          <span className="text-[#E2FFFE]/60 truncate max-w-[200px]">{post.title}</span>
+        </nav>
 
         {/* Cover image */}
         {post.thumbnail && (

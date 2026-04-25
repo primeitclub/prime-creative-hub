@@ -2,12 +2,12 @@ import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
 import { getTeamMembers, urlFor } from '@/lib/sanity';
 
-export default async function TeamSection() {
+export default async function TeamSection({ showHeader = true }: { showHeader?: boolean }) {
   const teamMembers = await getTeamMembers();
 
   return (
-    <section className="py-20 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px]">
-      <SectionHeader title="EXECUTIVE TEAM 26/27" arrowHref="/team" />
+    <section className={`${showHeader ? 'py-20' : 'pb-20'} max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px]`}>
+      {showHeader && <SectionHeader title="EXECUTIVE TEAM 26/27" arrowHref="/team" />}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-14 gap-x-6">
         {teamMembers.map((member: any) => (
           <TeamCard key={member._id} member={member} />
