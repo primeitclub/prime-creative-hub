@@ -14,6 +14,8 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
+const NO_CACHE = { cache: 'no-store' } as const
+
 // Queries
 export async function getProjects() {
     return client.fetch(`
@@ -29,7 +31,7 @@ export async function getProjects() {
         liveUrl,
         author
       }
-    `)
+    `, {}, NO_CACHE)
   }
 
   export async function getProjectBySlug(slug: string) {
@@ -46,9 +48,9 @@ export async function getProjects() {
         liveUrl,
         author
       }
-    `, { slug })
+    `, { slug }, NO_CACHE)
   }
-  
+
   export async function getPosts() {
     return client.fetch(`
       *[_type == "post"] | order(publishedAt desc) {
@@ -60,9 +62,9 @@ export async function getProjects() {
         publishedAt,
         body
       }
-    `)
+    `, {}, NO_CACHE)
   }
-  
+
   export async function getPostBySlug(slug: string) {
     return client.fetch(`
       *[_type == "post" && slug.current == $slug][0] {
@@ -74,9 +76,9 @@ export async function getProjects() {
         publishedAt,
         body
       }
-    `, { slug })
+    `, { slug }, NO_CACHE)
   }
-  
+
   export async function getTeamMembers() {
     return client.fetch(`
       *[_type == "teamMember"] | order(order asc) {
@@ -90,5 +92,5 @@ export async function getProjects() {
         linkedin,
         personalSite
       }
-    `)
+    `, {}, NO_CACHE)
   }
