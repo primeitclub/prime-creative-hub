@@ -11,8 +11,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: `${project.title} | Prime Creative Hub`,
-    description: project.description ?? undefined,
+    title: project.title,
+    description: project.shortDescription ?? undefined,
+    alternates: { canonical: `https://creativehub.primeitclub.com/projects/${slug}` },
+    openGraph: {
+      title: project.title,
+      description: project.shortDescription ?? undefined,
+      images: project.thumbnail
+        ? [{ url: urlFor(project.thumbnail).width(1200).url() }]
+        : undefined,
+    },
   };
 }
 

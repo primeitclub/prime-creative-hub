@@ -6,13 +6,33 @@ import Footer from '@/components/Footer';
 
 type Props = { params: Promise<{ slug: string }> };
 
+function bodyToPlainText(body: any[]): string {
+  if (!Array.isArray(body)) return '';
+  return body
+    .filter((block: any) => block._type === 'block')
+    .map((block: any) => block.children?.map((c: any) => c.text ?? '').join('') ?? '')
+    .join(' ')
+    .trim()
+    .slice(0, 160);
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return {};
+  const description = bodyToPlainText(post.body) || undefined;
   return {
-    title: `${post.title} | Prime Creative Hub`,
-    description: post.author ? `By ${post.author}` : undefined,
+    title: post.title,
+    description,
+    alternates: { canonical: `https://creativehub.primeitclub.com/blogs/${slug}` },
+    openGraph: {
+      title: post.title,
+      description,
+      type: 'article',
+      images: post.thumbnail
+        ? [{ url: urlFor(post.thumbnail).width(1200).url() }]
+        : undefined,
+    },
   };
 }
 
