@@ -4,6 +4,9 @@ import { urlFor } from '@/lib/sanity';
 
 export default function ProjectCard({ project }: { project: any }) {
   const slug = project.slug?.current;
+  const techTags: string[] = Array.isArray(project.techStack)
+    ? project.techStack
+    : project.techStack?.split(',').map((tag: string) => tag.trim()).filter(Boolean) ?? [];
 
   return (
     <article className="flex flex-col rounded-2xl overflow-hidden border border-white/8 bg-[#080808] hover:border-[#0AC4D0]/20 transition-all group">
@@ -43,13 +46,13 @@ export default function ProjectCard({ project }: { project: any }) {
             className="text-[#E2FFFE]/35 text-sm leading-relaxed line-clamp-3"
             style={{ fontFamily: 'var(--font-mona-sans)' }}
           >
-            {project.description}
+            {project.shortDescription}
           </p>
         </div>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-1.5">
-          {project.techStack?.slice(0, 6).map((tag: string) => (
+          {techTags.slice(0, 6).map((tag: string) => (
             <span
               key={tag}
               className="px-2.5 py-0.5 rounded-full border border-white/10 text-[#E2FFFE]/40 text-[11px]"
@@ -58,9 +61,9 @@ export default function ProjectCard({ project }: { project: any }) {
               {tag}
             </span>
           ))}
-          {project.techStack?.length > 6 && (
+          {techTags.length > 6 && (
             <span className="px-2.5 py-0.5 rounded-full border border-white/10 text-[#E2FFFE]/30 text-[11px]">
-              +{project.techStack.length - 6}
+              +{techTags.length - 6}
             </span>
           )}
         </div>

@@ -19,9 +19,10 @@ export const project = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
+      name: 'shortDescription',
+      title: 'Short Description',
+      type: 'string',
+      validation: (Rule) => Rule.max(120),
     }),
     defineField({
       name: 'thumbnail',
@@ -32,8 +33,8 @@ export const project = defineType({
     defineField({
       name: 'techStack',
       title: 'Tech Stack',
-      type: 'array',
-      of: [{ type: 'string' }],
+      description: 'Comma separated values e.g. React, Node JS, MySQL',
+      type: 'string',
     }),
     defineField({
       name: 'githubUrl',
@@ -49,6 +50,11 @@ export const project = defineType({
       name: 'author',
       title: 'Author',
       type: 'string',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Description',
+      type: 'text',
     }),
   ],
 })

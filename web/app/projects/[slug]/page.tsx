@@ -22,6 +22,10 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   if (!project) notFound();
 
+  const techTags: string[] = Array.isArray(project.techStack)
+    ? project.techStack
+    : project.techStack?.split(',').map((tag: string) => tag.trim()).filter(Boolean) ?? [];
+
   return (
     <main className="pt-[74px] min-h-screen bg-[#050301]">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] pt-10 pb-20">
@@ -66,19 +70,19 @@ export default async function ProjectDetailPage({ params }: Props) {
             </h1>
 
             {/* Short description */}
-            {project.description && (
+            {project.shortDescription && (
               <p
                 className="text-[#E2FFFE]/60 text-base leading-relaxed"
                 style={{ fontFamily: 'var(--font-mona-sans)' }}
               >
-                {project.description}
+                {project.shortDescription}
               </p>
             )}
 
             {/* Tech stack tags */}
-            {project.techStack?.length > 0 && (
+            {techTags.length > 0 && (
               <div className="flex flex-wrap gap-2">
-                {project.techStack.map((tag: string) => (
+                {techTags.map((tag: string) => (
                   <span
                     key={tag}
                     className="px-3 py-1 rounded-full border border-[#0AC4D0]/20 text-[#0AC4D0]/70 text-[12px]"
