@@ -5,8 +5,9 @@ import ProjectCard from '@/components/ui/ProjectCard';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Projects | Prime Creative Hub',
-  description: 'Explore projects built by Prime Creative Hub members.',
+  title: 'Projects',
+  description: 'Explore real-world projects built by Prime Creative Hub members at Prime College, Kathmandu.',
+  alternates: { canonical: 'https://creativehub.primeitclub.com/projects' },
 };
 
 export default async function ProjectsPage() {

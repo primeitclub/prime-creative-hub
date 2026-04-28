@@ -4,8 +4,9 @@ import TeamSection from '@/components/sections/TeamSection';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Team | Prime Creative Hub',
-  description: 'Meet the executive team of Prime Creative Hub.',
+  title: 'Team',
+  description: 'Meet the Executive Team of Prime Creative Hub — 26/27 tenure. Builders, designers and creators from Prime College, Kathmandu.',
+  alternates: { canonical: 'https://creativehub.primeitclub.com/team' },
 };
 
 export default function TeamPage() {

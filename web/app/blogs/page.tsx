@@ -4,8 +4,9 @@ import { getPosts, urlFor } from '@/lib/sanity';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Blogs | Prime Creative Hub',
-  description: 'Read articles and insights from Prime Creative Hub members.',
+  title: 'Blogs',
+  description: 'Insights, learnings and technical articles from Prime Creative Hub members in Nepal.',
+  alternates: { canonical: 'https://creativehub.primeitclub.com/blogs' },
 };
 
 export default async function BlogsPage() {
