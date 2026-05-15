@@ -31,4 +31,4 @@ jobs:
       - name: Deploy Sanity Studio
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-        run: npx sanity deploy --no-schema-extract
+        run: npx sanity deploy
