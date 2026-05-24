@@ -116,7 +116,7 @@ export async function getProjects() {
 
   export async function getHistoryEvents() {
     return client.fetch(`
-      *[_type == "historyEvent"] | order(startYear asc, order asc) {
+      *[_type == "historyEvent"] | order(startYear desc, order desc) {
         _id,
         title,
         description,
