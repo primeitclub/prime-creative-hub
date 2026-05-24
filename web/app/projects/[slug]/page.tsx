@@ -138,23 +138,44 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
 
         {/* Below the fold — full description */}
-        {project.description && (
-          <div className="border-t border-white/8 pt-16 max-w-[800px]">
-            <p
-              className="text-[#0AC4D0]/60 text-sm mb-4"
-              style={{ fontFamily: 'var(--font-mona-sans)' }}
-            >
-            </p>
-            <p
-              className="text-[#E2FFFE]/70 text-lg leading-relaxed"
-              style={{ fontFamily: 'var(--font-mona-sans)' }}
-            >
-              {project.description}
-            </p>
+        {Array.isArray(project.description) && project.description.length > 0 && (
+          <div className="border-t border-white/8 pt-16 max-w-[800px] space-y-5">
+            {project.description.map((block: any, i: number) => (
+              <Block key={block._key ?? i} block={block} />
+            ))}
           </div>
         )}
       </div>
       <Footer />
     </main>
   );
+}
+
+function Block({ block }: { block: any }) {
+  if (block._type !== 'block') return null;
+
+  const text = block.children
+    ?.map((child: any) => child.text ?? '')
+    .join('');
+
+  const baseClass = { fontFamily: 'var(--font-mona-sans)' };
+
+  switch (block.style) {
+    case 'h1':
+      return <h1 className="text-[#E2FFFE] text-4xl font-black uppercase mt-10 mb-4" style={{ fontFamily: 'var(--font-space-grotesk)' }}>{text}</h1>;
+    case 'h2':
+      return <h2 className="text-[#E2FFFE] text-3xl font-bold uppercase mt-8 mb-3" style={{ fontFamily: 'var(--font-space-grotesk)' }}>{text}</h2>;
+    case 'h3':
+      return <h3 className="text-[#E2FFFE] text-2xl font-bold mt-6 mb-2" style={{ fontFamily: 'var(--font-space-grotesk)' }}>{text}</h3>;
+    case 'h4':
+      return <h4 className="text-[#E2FFFE] text-xl font-semibold mt-4 mb-2" style={baseClass}>{text}</h4>;
+    case 'blockquote':
+      return (
+        <blockquote className="border-l-2 border-[#0AC4D0]/50 pl-5 text-[#E2FFFE]/60 text-lg italic" style={baseClass}>
+          {text}
+        </blockquote>
+      );
+    default:
+      return <p className="text-[#E2FFFE]/70 text-lg leading-relaxed" style={baseClass}>{text}</p>;
+  }
 }
