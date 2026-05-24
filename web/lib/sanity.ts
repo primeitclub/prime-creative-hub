@@ -81,16 +81,49 @@ export async function getProjects() {
 
   export async function getTeamMembers() {
     return client.fetch(`
-      *[_type == "teamMember"] | order(order asc) {
+      *[_type == "teamMember"] | order(isLead desc, displayOrder asc) {
         _id,
         name,
         role,
         domain,
         photo,
+        displayOrder,
         instagram,
         github,
         linkedin,
         personalSite
+      }
+    `, {}, NO_CACHE)
+  }
+
+  export async function getSiteSettings() {
+    return client.fetch(
+      `*[_type == "siteSettings" && _id == "siteSettings"][0] {
+        tagline,
+        contactEmail,
+        social {
+          instagram,
+          github,
+          linkedin,
+          twitter,
+          facebook
+        }
+      }`,
+      {},
+      NO_CACHE,
+    )
+  }
+
+  export async function getHistoryEvents() {
+    return client.fetch(`
+      *[_type == "historyEvent"] | order(startYear asc, order asc) {
+        _id,
+        title,
+        description,
+        startYear,
+        endYear,
+        image,
+        order
       }
     `, {}, NO_CACHE)
   }

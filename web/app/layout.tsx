@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Space_Grotesk, DM_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+import { getSiteSettings } from '@/lib/sanity';
 
 // Body font — Space Grotesk for body text
 const spaceGrotesk = Space_Grotesk({
@@ -35,6 +36,7 @@ export const metadata: Metadata = {
     'Tech Club',
     'Kathmandu',
     'Prime College',
+    'Nirjala Shakya',
     'Saugat KC',
     'Nepal tech community',
     'college tech club Nepal',
@@ -43,6 +45,12 @@ export const metadata: Metadata = {
     'tech students Nepal',
     'web development Nepal',
   ],
+  icons: {
+    icon: '/images/CreativeHub.svg',
+    shortcut: '/images/CreativeHub.svg',
+    apple: '/images/CreativeHub.svg',
+    other: { rel: 'icon', url: '/images/CreativeHub.svg' },
+  },
   metadataBase: new URL('https://creativehub.primeitclub.com'),
   alternates: { canonical: 'https://creativehub.primeitclub.com' },
   openGraph: {
@@ -50,12 +58,12 @@ export const metadata: Metadata = {
     locale: 'en_NP',
     type: 'website',
     url: 'https://creativehub.primeitclub.com',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Prime Creative Hub' }],
+    images: [{ url: '/images/CreativeHub.png', width: 1200, height: 630, alt: 'Prime Creative Hub' }],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@primeitclub',
-    images: ['/og-image.png'],
+    images: ['/images/CreativeHub.png'],
   },
   other: {
     'geo.region': 'NP-BA',
@@ -90,7 +98,10 @@ const orgJsonLd = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings() as { social?: { instagram?: string } } | null;
+  const joinHref = settings?.social?.instagram ?? '#';
+
   return (
     <html
       lang="en"
@@ -101,7 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
-        <Navbar />
+        <Navbar joinHref={joinHref} />
         {children}
         <p className="sr-only">
           Prime Creative Hub is a student-run creative and technical organization based in Kathmandu,

@@ -1,8 +1,16 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getSiteSettings } from '@/lib/sanity';
 
-export default function HeroSection() {
+export default async function HeroSection() {
+  const settings = await getSiteSettings() as {
+    contactEmail?: string;
+    social?: Record<string, string | undefined>;
+  } | null;
+
+  const social = settings?.social ?? {};
+  const email = settings?.contactEmail ?? null;
   return (
     <section className="relative min-h-screen bg-[#050301] flex flex-col pt-[74px] overflow-hidden">
       {/* Ambient glow */}
@@ -27,7 +35,7 @@ export default function HeroSection() {
               Hello👋, We&apos;re Prime Creative Hub
             </span>
             <MiniCursor
-              name="Saugat"
+              name="Innovate"
               color="#8B5CF6"
               className="absolute -bottom-8 left-20 translate-x-10"
               animName="cursor-float-1"
@@ -63,7 +71,9 @@ export default function HeroSection() {
               <HeadlineWord color="#E2FFFE">INSPIRE</HeadlineWord>
               <div className="relative self-center">
                 <Link
-                  href="#"
+                  href={social.instagram ?? '#'}
+                  target={social.instagram ? '_blank' : undefined}
+                  rel={social.instagram ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-1.5 px-3 py-1.5 md:px-[25px] md:py-3 rounded-full border border-white/20 text-[#E2FFFE] text-[13px] md:text-[17.5px] font-bold hover:border-[#0AC4D0]/50 hover:text-[#0AC4D0] transition-all whitespace-nowrap"
                   style={{ fontFamily: 'var(--font-mona-sans)' }}
                 >
@@ -74,7 +84,7 @@ export default function HeroSection() {
                   Join The Hub
                 </Link>
                 <MiniCursor
-                  name="Saurav"
+                  name="Share"
                   color="#10B981"
                   className="absolute -bottom-2 right-10 translate-x-20"
                   animName="cursor-float-3"
@@ -94,7 +104,7 @@ export default function HeroSection() {
                   Projects →
                 </Link>
                 <MiniCursor
-                  name="Sameer"
+                  name="Build"
                   color="#EC4899"
                   className="absolute -bottom-5 right-0 translate-x-3"
                   animName="cursor-float-2"
@@ -140,21 +150,25 @@ export default function HeroSection() {
 
             {/* Social icons — mail icon joins the row on mobile */}
             <div className="flex items-center gap-4 md:mx-auto">
-              <SocialIcon label="Instagram" src="/icons/instagram.svg" />
-              <SocialIcon label="GitHub"    src="/icons/github.svg"    />
-              <SocialIcon label="LinkedIn"  src="/icons/linkedin.svg"  />
-              <span className="md:hidden">
-                <SocialIcon label="Mail" src="/icons/mail.svg" href="mailto:primecreativehub2025@gmail.com" />
-              </span>
+              {social.instagram && <SocialIcon label="Instagram" src="/icons/instagram.svg" href={social.instagram} />}
+              {social.github    && <SocialIcon label="GitHub"    src="/icons/github.svg"    href={social.github}    />}
+              {social.linkedin  && <SocialIcon label="LinkedIn"  src="/icons/linkedin.svg"  href={social.linkedin}  />}
+              {email && (
+                <span className="md:hidden">
+                  <SocialIcon label="Mail" src="/icons/mail.svg" href={`mailto:${email}`} />
+                </span>
+              )}
             </div>
 
             {/* Email — desktop only */}
-            <div className="hidden md:flex items-center gap-2 md:absolute md:right-0">
-              <SocialIcon label="Mail" src="/icons/mail.svg" href="mailto:primecreativehub2025@gmail.com" />
-              <span className="text-[#E2FFFE] text-[15px]" style={{ fontFamily: 'var(--font-mona-sans)' }}>
-                primecreativehub2025@gmail.com
-              </span>
-            </div>
+            {email && (
+              <div className="hidden md:flex items-center gap-2 md:absolute md:right-0">
+                <SocialIcon label="Mail" src="/icons/mail.svg" href={`mailto:${email}`} />
+                <span className="text-[#E2FFFE] text-[15px]" style={{ fontFamily: 'var(--font-mona-sans)' }}>
+                  {email}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

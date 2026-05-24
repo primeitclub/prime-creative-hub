@@ -28,7 +28,7 @@ function TeamCard({ member }: { member: any }) {
           <img
             src={photoUrl}
             alt={member.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-none"
           />
         )}
       </div>

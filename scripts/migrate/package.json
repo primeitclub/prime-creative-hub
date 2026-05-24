@@ -1,0 +1,26 @@
+{
+  "name": "pch-migrate",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "export": "tsx export.ts",
+    "wipe": "tsx wipe.ts",
+    "migrate": "tsx run.ts",
+    "migrate:team": "tsx run.ts --only=team",
+    "migrate:history": "tsx run.ts --only=history",
+    "migrate:faq": "tsx run.ts --only=faq"
+  },
+  "dependencies": {
+    "@sanity/client": "^6.22.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "dotenv": "^16.4.5",
+    "mime-types": "^2.1.35"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^2.1.4",
+    "@types/node": "^20.16.5",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}

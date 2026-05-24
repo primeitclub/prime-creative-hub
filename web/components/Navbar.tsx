@@ -10,9 +10,10 @@ const navLinks = [
   { label: 'Projects', href: '/projects' },
   { label: 'Blogs',    href: '/blogs'    },
   { label: 'Team',     href: '/team'     },
+  { label: 'History',  href: '/history'  },
 ];
 
-export default function Navbar() {
+export default function Navbar({ joinHref = '#' }: { joinHref?: string }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -57,7 +58,9 @@ export default function Navbar() {
 
         {/* CTA — desktop */}
         <Link
-          href="#"
+          href={joinHref}
+          target={joinHref !== '#' ? '_blank' : undefined}
+          rel={joinHref !== '#' ? 'noopener noreferrer' : undefined}
           className="hidden md:flex items-center gap-1 px-3 py-1.5 text-sm font-medium bg-[#0AC4D0] text-[#050301] rounded-full hover:bg-[#0AC4D0]/85 transition-all"
           style={{ fontFamily: 'var(--font-space-grotesk)' }}
         >
@@ -104,7 +107,9 @@ export default function Navbar() {
             );
           })}
           <Link
-            href="#"
+            href={joinHref}
+            target={joinHref !== '#' ? '_blank' : undefined}
+            rel={joinHref !== '#' ? 'noopener noreferrer' : undefined}
             onClick={() => setMenuOpen(false)}
             className="self-end mt-1 px-4 py-2 text-sm font-medium bg-[#0AC4D0] text-[#050301] rounded-full hover:bg-[#0AC4D0]/85 transition-all"
             style={{ fontFamily: 'var(--font-space-grotesk)' }}
