@@ -37,17 +37,6 @@ export default function HistoryPage() {
           >
             OUR HISTORY
           </h1>
-          <p
-            className="mt-3 max-w-xl"
-            style={{
-              fontFamily: 'var(--font-mona-sans)',
-              fontSize: '14px',
-              lineHeight: 1.65,
-              color: 'rgba(226,255,254,0.35)',
-            }}
-          >
-            Every version of Prime Creative Hub has left a mark. Here&apos;s how we got here.
-          </p>
         </div>
       </div>
 
