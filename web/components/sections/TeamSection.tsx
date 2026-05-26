@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import SectionHeader from '@/components/ui/SectionHeader';
-import { getTeamMembers, urlFor } from '@/lib/sanity';
+import { getTeamMembers, getCurrentCohort, formatCohort, urlFor } from '@/lib/sanity';
 
 export default async function TeamSection({ showHeader = true }: { showHeader?: boolean }) {
-  const teamMembers = await getTeamMembers();
+  const [teamMembers, cohort] = await Promise.all([getTeamMembers(), getCurrentCohort()]);
+  const cohortLabel = formatCohort(cohort);
+  const title = `EXECUTIVE TEAM${cohortLabel ? ` ${cohortLabel}` : ''}`;
 
   return (
     <section className={`${showHeader ? 'py-20' : 'pb-20'} max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px]`}>
-      {showHeader && <SectionHeader title="EXECUTIVE TEAM 26/27" arrowHref="/team" />}
+      {showHeader && <SectionHeader title={title} arrowHref="/team" />}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-14 gap-x-6">
         {teamMembers.map((member: any) => (
           <TeamCard key={member._id} member={member} />

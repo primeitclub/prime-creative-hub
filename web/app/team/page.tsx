@@ -2,14 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import TeamSection from '@/components/sections/TeamSection';
 import Footer from '@/components/Footer';
+import { getCurrentCohort, formatCohort } from '@/lib/sanity';
 
-export const metadata: Metadata = {
-  title: 'Team',
-  description: 'Meet the Executive Team of Prime Creative Hub — 26/27 tenure. Builders, designers and creators from Prime College, Kathmandu.',
-  alternates: { canonical: 'https://creativehub.primeitclub.com/team' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const cohort = await getCurrentCohort();
+  const label = formatCohort(cohort);
+  const tenure = label ? `${label} tenure` : 'current tenure';
+  return {
+    title: 'Team',
+    description: `Meet the Executive Team of Prime Creative Hub — ${tenure}. Builders, designers and creators from Prime College, Kathmandu.`,
+    alternates: { canonical: 'https://creativehub.primeitclub.com/team' },
+  };
+}
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const cohort = await getCurrentCohort();
+  const cohortLabel = formatCohort(cohort);
+  const heading = `EXECUTIVE TEAM${cohortLabel ? ` ${cohortLabel}` : ''}`;
+
   return (
     <main className="pt-[74px] min-h-screen">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-[150px] pt-10">
@@ -23,7 +33,7 @@ export default function TeamPage() {
             className="text-[clamp(40px,5vw,72px)] font-black uppercase leading-none text-[#E2FFFE] tracking-tight"
             style={{ fontFamily: 'var(--font-space-grotesk)' }}
           >
-            EXECUTIVE TEAM 26/27
+            {heading}
           </h1>
         </div>
       </div>
