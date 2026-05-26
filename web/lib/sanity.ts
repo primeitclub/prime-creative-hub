@@ -16,6 +16,18 @@ export function urlFor(source: any) {
 
 const NO_CACHE = { cache: 'no-store' } as const
 
+export type Cohort = { label?: string; startYear?: number; endYear?: number };
+
+// Formats a cohort into a short "25/26" label; falls back to its `label` field.
+export function formatCohort(cohort: Cohort | null | undefined): string {
+  if (!cohort) return '';
+  if (cohort.startYear) {
+    const end = cohort.endYear ?? cohort.startYear + 1;
+    return `${String(cohort.startYear).slice(-2)}/${String(end).slice(-2)}`;
+  }
+  return cohort.label ?? '';
+}
+
 // Queries
 export async function getProjects() {
     return client.fetch(`
@@ -79,9 +91,20 @@ export async function getProjects() {
     `, { slug }, NO_CACHE)
   }
 
+  export async function getCurrentCohort() {
+    return client.fetch(`
+      *[_type == "teamCohort" && isCurrent == true] | order(startYear desc)[0] {
+        _id,
+        label,
+        startYear,
+        endYear
+      }
+    `, {}, NO_CACHE)
+  }
+
   export async function getTeamMembers() {
     return client.fetch(`
-      *[_type == "teamMember"] | order(isLead desc, displayOrder asc) {
+      *[_type == "teamMember" && cohort->isCurrent == true] | order(isLead desc, displayOrder asc) {
         _id,
         name,
         role,
