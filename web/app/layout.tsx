@@ -46,10 +46,12 @@ export const metadata: Metadata = {
     'web development Nepal',
   ],
   icons: {
-    icon: '/images/CreativeHub.svg',
-    shortcut: '/images/CreativeHub.svg',
-    apple: '/images/CreativeHub.svg',
-    other: { rel: 'icon', url: '/images/CreativeHub.svg' },
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/images/CreativeHub.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/images/CreativeHub.png',
   },
   metadataBase: new URL('https://creativehub.primeitclub.com'),
   alternates: { canonical: 'https://creativehub.primeitclub.com' },
