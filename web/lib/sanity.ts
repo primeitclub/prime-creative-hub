@@ -70,7 +70,7 @@ export async function getProjects() {
         title,
         slug,
         thumbnail,
-        author,
+        "author": author->name,
         publishedAt,
         body
       }
@@ -84,7 +84,7 @@ export async function getProjects() {
         title,
         slug,
         thumbnail,
-        author,
+        "author": author->name,
         publishedAt,
         body
       }
